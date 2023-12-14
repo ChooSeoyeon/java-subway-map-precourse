@@ -13,7 +13,19 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        validateDuplicateStationName(station);
         stations.add(station);
+    }
+
+    private static void validateDuplicateStationName(Station station) {
+        if (existsByName(station.getName())) {
+            throw new IllegalArgumentException("이미 존재하는 역 이름입니다.");
+        }
+    }
+
+    public static boolean existsByName(String name) {
+        return stations.stream()
+                .anyMatch(station -> station.isSameName(name));
     }
 
     public static boolean deleteStation(String name) {
