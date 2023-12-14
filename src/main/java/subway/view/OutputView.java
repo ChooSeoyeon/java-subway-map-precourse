@@ -11,7 +11,7 @@ public class OutputView {
     }
 
     public void printMainFunction() {
-        System.out.println("## 메인 화면");
+        System.out.println("\n## 메인 화면");
         System.out.println("1. 역 관리");
         System.out.println("2. 노선 관리");
         System.out.println("3. 구간 관리");
@@ -71,11 +71,10 @@ public class OutputView {
     }
 
     public void printAllLine(List<Line> lines) {
-        System.out.println("## 노선 목록");
+        System.out.println("\n## 노선 목록");
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
         }
-        System.out.println();
     }
 
     public void printSuccessToUpdateRegistration() {

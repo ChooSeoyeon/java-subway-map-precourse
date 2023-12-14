@@ -82,4 +82,18 @@ public class Registration {
     public boolean hasStation(Station station) {
         return stations.contains(station);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Registration) {
+            Registration registration = (Registration) obj;
+            return this.line.equals(registration.line);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return line.hashCode();
+    }
 }

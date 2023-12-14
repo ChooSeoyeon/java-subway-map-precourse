@@ -21,4 +21,18 @@ public class Line {
     public boolean isSameName(String name) {
         return this.name.equals(name);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Line) {
+            Line line = (Line) obj;
+            return this.name.equals(line.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

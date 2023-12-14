@@ -21,4 +21,18 @@ public class Station {
     public boolean isSameName(String name) {
         return this.name.equals(name);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Station) {
+            Station station = (Station) obj;
+            return this.name.equals(station.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }
