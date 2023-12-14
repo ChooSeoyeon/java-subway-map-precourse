@@ -14,7 +14,24 @@ public class SubwayMapController {
     }
 
     public void run() {
-        // TODO
+        while (true) {
+            String function = repeatUntilSuccessWithReturn(inputView::readFunction);
+            if (function.equals("Q")) {
+                return;
+            }
+            if (function.equals("1")) {
+                return;
+            }
+            if (function.equals("2")) {
+                return;
+            }
+            if (function.equals("3")) {
+                return;
+            }
+            if (function.equals("4")) {
+                return;
+            }
+        }
     }
 
     private <T> T repeatUntilSuccessWithReturn(Supplier<T> supplier) {
