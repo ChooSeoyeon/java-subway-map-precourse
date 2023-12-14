@@ -47,4 +47,9 @@ public class RegistrationRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 등록 정보입니다."));
     }
+
+    public static void updateRegistration(Registration registration) {
+        RegistrationRepository.deleteRegistrationByLine(registration.getLine());
+        RegistrationRepository.addRegistration(registration);
+    }
 }

@@ -83,4 +83,21 @@ public class RegistrationRepositoryTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 등록 정보입니다.");
     }
+
+    @Test
+    void 등록_수정시_기존_등록을_삭제하고_재등록한다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("잠실역");
+        Station station3 = new Station("삼성역");
+        Registration registration1 = new Registration(line, List.of(station1, station2, station3));
+        Registration registration2 = new Registration(line, List.of(station1, station2));
+        RegistrationRepository.addRegistration(registration1);
+        RegistrationRepository.updateRegistration(registration2);
+
+        assertThat(RegistrationRepository.findAllRegistration()).containsExactly(registration2);
+        assertThat(RegistrationRepository.existsRegistrationByStation(station1)).isTrue();
+        assertThat(RegistrationRepository.existsRegistrationByStation(station2)).isTrue();
+        assertThat(RegistrationRepository.existsRegistrationByStation(station3)).isFalse(); // TODO
+    }
 }
