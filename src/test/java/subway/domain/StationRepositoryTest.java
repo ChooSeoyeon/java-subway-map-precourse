@@ -15,6 +15,16 @@ public class StationRepositoryTest {
     }
 
     @Test
+    void 역_목록을_조회할_수_있다() {
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("잠실역");
+        StationRepository.addStation(station1);
+        StationRepository.addStation(station2);
+
+        assertThat(StationRepository.findAllStation()).containsExactly(station1, station2);
+    }
+
+    @Test
     void 역_저장시_중복된_역_이름인_경우_예외가_발생한다() {
         Station station = new Station("강남역");
         StationRepository.addStation(station);
@@ -67,12 +77,10 @@ public class StationRepositoryTest {
     }
 
     @Test
-    void 역_목록을_조회할_수_있다() {
-        Station station1 = new Station("강남역");
-        Station station2 = new Station("잠실역");
-        StationRepository.addStation(station1);
-        StationRepository.addStation(station2);
+    void 역_이름으로_역을_찾을_수_있다() {
+        Station station = new Station("강남역");
+        StationRepository.addStation(station);
 
-        assertThat(StationRepository.findAllStation()).containsExactly(station1, station2);
+        assertThat(StationRepository.findStationByName(station.getName())).isEqualTo(station);
     }
 }

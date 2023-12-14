@@ -40,4 +40,31 @@ public class LineRepositoryTest {
 
         assertThat(LineRepository.existsLineByName(line.getName())).isTrue();
     }
+
+    @Test
+    void 노선_이름으로_노선을_삭제할_수_있다() {
+        Line line = new Line("2호선");
+        LineRepository.addLine(line);
+        LineRepository.deleteLineByName(line.getName());
+
+        assertThat(LineRepository.existsLineByName(line.getName())).isFalse();
+    }
+
+    @Test
+    void 노선_삭제시_존재하지_않는_노선이면_예외가_발생한다() {
+        Line line = new Line("2호선");
+        LineRepository.addLine(line);
+
+        assertThatThrownBy(() -> LineRepository.deleteLineByName("3호선"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 노선입니다.");
+    }
+
+    @Test
+    void 노선_이름으로_노선을_찾을_수_있다() {
+        Line line = new Line("2호선");
+        LineRepository.addLine(line);
+
+        assertThat(LineRepository.findLineByName(line.getName())).isEqualTo(line);
+    }
 }
