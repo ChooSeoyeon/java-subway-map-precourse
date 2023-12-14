@@ -1,7 +1,7 @@
 package subway.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -68,5 +68,15 @@ public class StationRepositoryTest {
         assertThatThrownBy(() -> StationRepository.deleteStationByName(station1.getName()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("노선에 등록된 역은 삭제할 수 없습니다.");
+    }
+
+    @Test
+    void 역_목록을_조회할_수_있다() {
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("잠실역");
+        StationRepository.addStation(station1);
+        StationRepository.addStation(station2);
+
+        assertThat(StationRepository.findAllStation()).containsExactly(station1, station2);
     }
 }

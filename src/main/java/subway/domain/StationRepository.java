@@ -7,7 +7,7 @@ import java.util.List;
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
-    public static List<Station> stations() {
+    public static List<Station> findAllStation() {
         return Collections.unmodifiableList(stations);
     }
 
