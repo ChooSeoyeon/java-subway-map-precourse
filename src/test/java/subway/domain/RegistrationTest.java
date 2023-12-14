@@ -28,4 +28,56 @@ public class RegistrationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("노선에는 2개 이상의 역이 등록되어야 합니다.");
     }
+
+    @Test
+    void 역목록의_특정_위치에_역_추가시_위치가_범위밖이면_예외가_발생한다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("역삼역");
+        Registration registration = new Registration(line, List.of(station1, station2));
+        Station station3 = new Station("삼성역");
+
+        assertThatThrownBy(() -> registration.registerStationToLine(4, station3))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("추가할 수 없는 위치입니다.");
+    }
+
+    @Test
+    void 역목록의_마지막_위치에_역을_추가할_수_있다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("역삼역");
+        Registration registration = new Registration(line, List.of(station1, station2));
+        Station station3 = new Station("삼성역");
+
+        registration.registerStationToLine(2, station3);
+
+        assertThat(registration.getStations().get(2)).isEqualTo(station3);
+    }
+
+    @Test
+    void 역목록의_처음_위치에_역을_추가할_수_있다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("역삼역");
+        Registration registration = new Registration(line, List.of(station1, station2));
+        Station station3 = new Station("삼성역");
+
+        registration.registerStationToLine(0, station3);
+
+        assertThat(registration.getStations().get(0)).isEqualTo(station3);
+    }
+
+    @Test
+    void 역목록의_중간_위치에_역을_추가할_수_있다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("역삼역");
+        Registration registration = new Registration(line, List.of(station1, station2));
+        Station station3 = new Station("삼성역");
+
+        registration.registerStationToLine(1, station3);
+
+        assertThat(registration.getStations().get(1)).isEqualTo(station3);
+    }
 }
