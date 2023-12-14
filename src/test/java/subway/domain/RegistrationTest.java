@@ -50,7 +50,7 @@ public class RegistrationTest {
         Registration registration = new Registration(line, List.of(station1, station2));
         Station station3 = new Station("삼성역");
 
-        registration.registerStationToLine(2, station3);
+        registration.registerStationToLine(3, station3);
 
         assertThat(registration.getStations().get(2)).isEqualTo(station3);
     }
@@ -63,7 +63,7 @@ public class RegistrationTest {
         Registration registration = new Registration(line, List.of(station1, station2));
         Station station3 = new Station("삼성역");
 
-        registration.registerStationToLine(0, station3);
+        registration.registerStationToLine(1, station3);
 
         assertThat(registration.getStations().get(0)).isEqualTo(station3);
     }
@@ -76,7 +76,7 @@ public class RegistrationTest {
         Registration registration = new Registration(line, List.of(station1, station2));
         Station station3 = new Station("삼성역");
 
-        registration.registerStationToLine(1, station3);
+        registration.registerStationToLine(2, station3);
 
         assertThat(registration.getStations().get(1)).isEqualTo(station3);
     }

@@ -6,6 +6,7 @@ import java.util.List;
 public class Registration {
     private Line line;
     private ArrayList<Station> stations;
+    private static final int INDEX_START = 1;
 
     public Registration(Line line, List<Station> stations) {
         this.line = line;
@@ -32,6 +33,7 @@ public class Registration {
     }
 
     public void registerStationToLine(int index, Station station) {
+        index -= INDEX_START;
         validateRegisterStationToLine(index, station);
         stations.add(index, station);
     }
