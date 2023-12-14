@@ -1,6 +1,11 @@
 package subway.controller;
 
+import java.util.List;
 import java.util.function.Supplier;
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -15,23 +20,111 @@ public class SubwayMapController {
 
     public void run() {
         while (true) {
+            outputView.printMainFunction();
             String function = repeatUntilSuccessWithReturn(inputView::readFunction);
             if (function.equals("Q")) {
                 return;
             }
             if (function.equals("1")) {
-                return;
+                String subFunction = repeatUntilSuccessWithReturn(inputView::readStationFunction);
+                if (subFunction.equals("1")) {
+                    repeatUntilSuccess(this::addStation);
+                    outputView.printSuccessToAddStation();
+                    continue;
+                }
+                if (subFunction.equals("2")) {
+                    repeatUntilSuccess(this::deleteStation);
+                    outputView.printSuccessToDeleteStation();
+                    continue;
+                }
+                if (subFunction.equals("3")) {
+                    findAllStation();
+                    continue;
+                }
+                if (subFunction.equals("B")) {
+                    continue;
+                }
             }
             if (function.equals("2")) {
-                return;
+                String subFunction = repeatUntilSuccessWithReturn(inputView::readLineFunction);
+                if (subFunction.equals("1")) {
+                    repeatUntilSuccess(this::addLine);
+                    outputView.printSuccessToAddLine();
+                    continue;
+                }
+                if (subFunction.equals("2")) {
+                    repeatUntilSuccess(this::deleteLine);
+                    outputView.printSuccessToDeleteLine();
+                    continue;
+                }
+                if (subFunction.equals("3")) {
+                    findAllLine();
+                    continue;
+                }
+                if (subFunction.equals("B")) {
+                    continue;
+                }
             }
             if (function.equals("3")) {
                 return;
+//                String subFunction = repeatUntilSuccessWithReturn(inputView::readRegistrationFunction);
+//                if (subFunction.equals("1")) {
+//                    repeatUntilSuccess(this::addRegistration);
+//                    outputView.printSuccessToAddRegistration();
+//                    continue;
+//                }
+//                if (subFunction.equals("2")) {
+//                    repeatUntilSuccess(this::deleteRegistration);
+//                    outputView.printSuccessToDeleteRegistration();
+//                    continue;
+//                }
+//                if (subFunction.equals("B")) {
+//                    continue;
+//                }
             }
             if (function.equals("4")) {
                 return;
             }
         }
+    }
+
+//    private void addRegistration() {
+//        String lineName = inputView.readLineName();
+//        String stationName = inputView.readStationName();
+//        int distance = inputView.readDistance();
+//        LineRepository.addStation(lineName, stationName, distance);
+//    }
+
+    private void deleteLine() {
+        String lineName = inputView.readLineName();
+        LineRepository.deleteLineByName(lineName);
+    }
+
+    private void addLine() {
+        String lineName = inputView.readLineName();
+        Line line = new Line(lineName);
+        LineRepository.addLine(line);
+    }
+
+    private void addStation() {
+        String stationName = inputView.readStationName();
+        Station station = new Station(stationName);
+        StationRepository.addStation(station);
+    }
+
+    private void deleteStation() {
+        String stationName = inputView.readStationName();
+        StationRepository.deleteStationByName(stationName);
+    }
+
+    private void findAllStation() {
+        List<Station> stations = StationRepository.findAllStation();
+        outputView.printAllStation(stations);
+    }
+
+    private void findAllLine() {
+        List<Line> lines = LineRepository.findAllLine();
+        outputView.printAllLine(lines);
     }
 
     private <T> T repeatUntilSuccessWithReturn(Supplier<T> supplier) {
