@@ -11,6 +11,10 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    public static void deleteAllStation() {
+        stations.clear();
+    }
+
     public static void addStation(Station station) {
         validateDuplicateStationName(station);
         stations.add(station);
@@ -44,9 +48,5 @@ public class StationRepository {
         if (RegistrationRepository.existsRegistrationByStation(station)) {
             throw new IllegalArgumentException("노선에 등록된 역은 삭제할 수 없습니다.");
         }
-    }
-
-    public static void deleteAllStation() {
-        stations.clear();
     }
 }
