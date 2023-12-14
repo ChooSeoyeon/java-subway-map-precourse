@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class StationRepositoryTest {
@@ -60,8 +59,7 @@ public class StationRepositoryTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 역입니다.");
     }
-
-    @Disabled
+    
     @Test
     void 역_삭제시_노선에_등록된_역이면_예외가_발생한다() {
         Station station1 = new Station("강남역");
@@ -69,7 +67,7 @@ public class StationRepositoryTest {
         StationRepository.addStation(station1);
         StationRepository.addStation(station2);
         Registration registration = new Registration(new Line("2호선"), List.of(station1, station2));
-        // RegistrationRepository.addRegistration(registration);
+        RegistrationRepository.addRegistration(registration);
 
         assertThatThrownBy(() -> StationRepository.deleteStationByName(station1.getName()))
                 .isInstanceOf(IllegalArgumentException.class)

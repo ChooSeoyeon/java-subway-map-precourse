@@ -32,6 +32,7 @@ public class RegistrationRepository {
     }
 
     public static boolean existsRegistrationByStation(Station station) {
-        return true;
+        return registrations.stream()
+                .anyMatch(registration -> registration.hasStation(station));
     }
 }

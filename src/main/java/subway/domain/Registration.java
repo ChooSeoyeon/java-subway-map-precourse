@@ -78,4 +78,8 @@ public class Registration {
     public boolean isSameLine(Line line) {
         return this.line.equals(line);
     }
+
+    public boolean hasStation(Station station) {
+        return stations.contains(station);
+    }
 }
