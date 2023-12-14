@@ -20,6 +20,32 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printStationFunction() {
+        System.out.println("\n## 역 관리 화면");
+        System.out.println("1. 역 등록");
+        System.out.println("2. 역 삭제");
+        System.out.println("3. 역 조회");
+        System.out.println("B. 돌아가기");
+        System.out.println();
+    }
+
+    public void printLineFunction() {
+        System.out.println("\n## 노선 관리 화면");
+        System.out.println("1. 노선 등록");
+        System.out.println("2. 노선 삭제");
+        System.out.println("3. 노선 조회");
+        System.out.println("B. 돌아가기");
+        System.out.println();
+    }
+
+    public void printRegistrationFunction() {
+        System.out.println("\n## 구간 관리 화면");
+        System.out.println("1. 구간 등록");
+        System.out.println("2. 구간 삭제");
+        System.out.println("B. 돌아가기");
+        System.out.println();
+    }
+
     public void printSuccessToAddStation() {
         System.out.println("[INFO] 지하철 역이 등록되었습니다.");
     }

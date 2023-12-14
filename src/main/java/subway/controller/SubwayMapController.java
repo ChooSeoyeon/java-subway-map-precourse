@@ -28,6 +28,7 @@ public class SubwayMapController {
                 return;
             }
             if (function.equals("1")) {
+                outputView.printStationFunction();
                 String subFunction = repeatUntilSuccessWithReturn(inputView::readStationFunction);
                 if (subFunction.equals("1")) {
                     repeatUntilSuccess(this::addStation);
@@ -48,6 +49,7 @@ public class SubwayMapController {
                 }
             }
             if (function.equals("2")) {
+                outputView.printLineFunction();
                 String subFunction = repeatUntilSuccessWithReturn(inputView::readLineFunction);
                 if (subFunction.equals("1")) {
                     repeatUntilSuccess(this::addLine);
@@ -68,6 +70,7 @@ public class SubwayMapController {
                 }
             }
             if (function.equals("3")) {
+                outputView.printRegistrationFunction();
                 String subFunction = repeatUntilSuccessWithReturn(inputView::readRegistrationFunction);
                 if (subFunction.equals("1")) {
                     repeatUntilSuccess(this::updateRegistration);

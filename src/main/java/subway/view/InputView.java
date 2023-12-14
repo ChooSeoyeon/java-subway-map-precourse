@@ -36,14 +36,7 @@ public class InputView {
     }
 
     public String readStationFunction() {
-        System.out.println("\n## 역 관리 화면");
-        System.out.println("1. 역 등록");
-        System.out.println("2. 역 삭제");
-        System.out.println("3. 역 조회");
-        System.out.println("B. 돌아가기");
-        System.out.println();
         System.out.println("## 원하는 기능을 선택하세요.");
-
         String inputFunction = scanner.nextLine();
         validateStationFunction(inputFunction);
         return inputFunction;
@@ -71,14 +64,7 @@ public class InputView {
     }
 
     public String readLineFunction() {
-        System.out.println("\n## 노선 관리 화면");
-        System.out.println("1. 노선 등록");
-        System.out.println("2. 노선 삭제");
-        System.out.println("3. 노선 조회");
-        System.out.println("B. 돌아가기");
-        System.out.println();
-        System.out.println("## 원하는 기능을 선택하세요.");
-
+        System.out.println("\n## 원하는 기능을 선택하세요.");
         String inputFunction = scanner.nextLine();
         validateLineFunction(inputFunction);
         return inputFunction;
@@ -106,13 +92,7 @@ public class InputView {
     }
 
     public String readRegistrationFunction() {
-        System.out.println("\n## 구간 관리 화면");
-        System.out.println("1. 구간 등록");
-        System.out.println("2. 구간 삭제");
-        System.out.println("B. 돌아가기");
-        System.out.println();
         System.out.println("## 원하는 기능을 선택하세요.");
-
         String inputFunction = scanner.nextLine();
         validateRegistrationFunction(inputFunction);
         return inputFunction;
