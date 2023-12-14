@@ -11,6 +11,12 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
+    public static void addInitLine() {
+        lines.add(new Line("2호선"));
+        lines.add(new Line("3호선"));
+        lines.add(new Line("신분당선"));
+    }
+
     public static void addLine(Line line) {
         validateDuplicateLineName(line);
         lines.add(line);

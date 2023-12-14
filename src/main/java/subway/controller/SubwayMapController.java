@@ -21,6 +21,17 @@ public class SubwayMapController {
     }
 
     public void run() {
+        prepare();
+        play();
+    }
+
+    private void prepare() {
+        StationRepository.addInitStation();
+        LineRepository.addInitLine();
+        RegistrationRepository.addInitRegistration();
+    }
+
+    private void play() {
         while (true) {
             outputView.printMainFunction();
             String function = repeatUntilSuccessWithReturn(inputView::readFunction);
