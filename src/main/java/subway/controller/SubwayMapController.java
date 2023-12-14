@@ -84,9 +84,14 @@ public class SubwayMapController {
                 }
             }
             if (function.equals("4")) {
-                return;
+                findAllRegistration();
             }
         }
+    }
+
+    private void findAllRegistration() {
+        List<Registration> registrations = RegistrationRepository.findAllRegistration();
+        outputView.printAllRegistration(registrations);
     }
 
     private void deleteRegistration() {
@@ -128,13 +133,13 @@ public class SubwayMapController {
     }
 
     private void addStation() {
-        String stationName = inputView.readDeleteStationName();
+        String stationName = inputView.readStationName();
         Station station = new Station(stationName);
         StationRepository.addStation(station);
     }
 
     private void deleteStation() {
-        String stationName = inputView.readStationName();
+        String stationName = inputView.readDeleteStationName();
         StationRepository.deleteStationByName(stationName);
     }
 

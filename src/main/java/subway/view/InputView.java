@@ -36,7 +36,7 @@ public class InputView {
     }
 
     public String readStationFunction() {
-        System.out.println("## 역 관리 화면");
+        System.out.println("\n## 역 관리 화면");
         System.out.println("1. 역 등록");
         System.out.println("2. 역 삭제");
         System.out.println("3. 역 조회");
@@ -66,12 +66,12 @@ public class InputView {
     }
 
     public String readStationName() {
-        System.out.println("## 등록할 역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 역 이름을 입력하세요.");
         return scanner.nextLine();
     }
 
     public String readLineFunction() {
-        System.out.println("## 노선 관리 화면");
+        System.out.println("\n## 노선 관리 화면");
         System.out.println("1. 노선 등록");
         System.out.println("2. 노선 삭제");
         System.out.println("3. 노선 조회");
@@ -101,12 +101,12 @@ public class InputView {
     }
 
     public String readLineName() {
-        System.out.println("## 등록할 노선 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         return scanner.nextLine();
     }
 
     public String readRegistrationFunction() {
-        System.out.println("## 구간 관리 화면");
+        System.out.println("\n## 구간 관리 화면");
         System.out.println("1. 구간 등록");
         System.out.println("2. 구간 삭제");
         System.out.println("B. 돌아가기");
@@ -132,37 +132,37 @@ public class InputView {
     }
 
     public int readOrder() {
-        System.out.println("## 순서를 입력하세요.");
+        System.out.println("\n## 순서를 입력하세요.");
         return Integer.parseInt(scanner.nextLine());
     }
 
     public String readStartStationName() {
-        System.out.println("## 등록할 구간의 상행역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 구간의 상행역 이름을 입력하세요.");
         return scanner.nextLine();
     }
 
     public String readEndStationName() {
-        System.out.println("## 등록할 구간의 하행역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 구간의 하행역 이름을 입력하세요.");
         return scanner.nextLine();
     }
 
     public String readDeleteLineName() {
-        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
         return scanner.nextLine();
     }
 
     public String readDeleteStationName() {
-        System.out.println("## 삭제할 역 이름을 입력하세요.");
+        System.out.println("\n## 삭제할 역 이름을 입력하세요.");
         return scanner.nextLine();
     }
 
     public String readDeleteRegistrationStationName() {
-        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
         return scanner.nextLine();
     }
 
     public String readDeleteRegistrationLineName() {
-        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+        System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
         return scanner.nextLine();
     }
 }

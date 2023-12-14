@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.List;
 import subway.domain.Line;
+import subway.domain.Registration;
 import subway.domain.Station;
 
 public class OutputView {
@@ -57,5 +58,16 @@ public class OutputView {
 
     public void printSuccessToDeleteRegistration() {
         System.out.println("[INFO] 구간이 삭제되었습니다.");
+    }
+
+    public void printAllRegistration(List<Registration> registrations) {
+        System.out.println("## 지하철 노선도");
+        for (Registration registration : registrations) {
+            System.out.println("[INFO] " + registration.getLine().getName());
+            System.out.println("[INFO] ---");
+            for (Station station : registration.getStations()) {
+                System.out.println("[INFO] " + station.getName());
+            }
+        }
     }
 }
