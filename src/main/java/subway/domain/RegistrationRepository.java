@@ -16,10 +16,22 @@ public class RegistrationRepository {
     }
 
     public static void addRegistration(Registration registration) {
+        validateDuplicateRegistration(registration);
         registrations.add(registration);
     }
 
+    private static void validateDuplicateRegistration(Registration registration) {
+        if (existsRegistrationByLine(registration.getLine())) {
+            throw new IllegalArgumentException("이미 등록된 노선입니다.");
+        }
+    }
+
+    public static boolean existsRegistrationByLine(Line line) {
+        return registrations.stream()
+                .anyMatch(registration -> registration.isSameLine(line));
+    }
+
     public static boolean existsRegistrationByStation(Station station) {
-        return false; // TODO
+        return true;
     }
 }

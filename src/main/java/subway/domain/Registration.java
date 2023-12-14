@@ -74,4 +74,8 @@ public class Registration {
             throw new IllegalArgumentException("노선에 등록되지 않은 역입니다.");
         }
     }
+
+    public boolean isSameLine(Line line) {
+        return this.line.equals(line);
+    }
 }
