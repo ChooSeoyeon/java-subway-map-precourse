@@ -145,4 +145,24 @@ public class InputView {
         System.out.println("## 등록할 구간의 하행역 이름을 입력하세요.");
         return scanner.nextLine();
     }
+
+    public String readDeleteLineName() {
+        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public String readDeleteStationName() {
+        System.out.println("## 삭제할 역 이름을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public String readDeleteRegistrationStationName() {
+        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public String readDeleteRegistrationLineName() {
+        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+        return scanner.nextLine();
+    }
 }

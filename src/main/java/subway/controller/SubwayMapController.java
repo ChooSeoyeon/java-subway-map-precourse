@@ -68,21 +68,20 @@ public class SubwayMapController {
                 }
             }
             if (function.equals("3")) {
-                return;
-//                String subFunction = repeatUntilSuccessWithReturn(inputView::readRegistrationFunction);
-//                if (subFunction.equals("1")) {
-//                    repeatUntilSuccess(this::addRegistration);
-//                    outputView.printSuccessToAddRegistration();
-//                    continue;
-//                }
-//                if (subFunction.equals("2")) {
-//                    repeatUntilSuccess(this::deleteRegistration);
-//                    outputView.printSuccessToDeleteRegistration();
-//                    continue;
-//                }
-//                if (subFunction.equals("B")) {
-//                    continue;
-//                }
+                String subFunction = repeatUntilSuccessWithReturn(inputView::readRegistrationFunction);
+                if (subFunction.equals("1")) {
+                    repeatUntilSuccess(this::updateRegistration);
+                    outputView.printSuccessToUpdateRegistration();
+                    continue;
+                }
+                if (subFunction.equals("2")) {
+                    repeatUntilSuccess(this::deleteRegistration);
+                    outputView.printSuccessToDeleteRegistration();
+                    continue;
+                }
+                if (subFunction.equals("B")) {
+                    continue;
+                }
             }
             if (function.equals("4")) {
                 return;
@@ -90,18 +89,29 @@ public class SubwayMapController {
         }
     }
 
-//    private void addRegistration() {
-//        String lineName = inputView.readLineName();
-//        String stationName = inputView.readStationName();
-//        int order = inputView.readOrder();
-//        Line line = new Line(lineName);
-//        Station station = new Station(stationName);
-//        Registration registration = new Registration(line, station, order);
-//        RegistrationRepository.addRegistration(registration);
-//    }
+    private void deleteRegistration() {
+        String lineName = inputView.readDeleteRegistrationLineName();
+        String stationName = inputView.readDeleteRegistrationStationName();
+        Line line = new Line(lineName);
+        Station station = new Station(stationName);
+        Registration findRegistration = RegistrationRepository.findRegistrationByLine(line);
+        findRegistration.removeStationFromLine(station);
+        RegistrationRepository.updateRegistration(findRegistration);
+    }
+
+    private void updateRegistration() {
+        String lineName = inputView.readLineName();
+        String stationName = inputView.readStationName();
+        int order = inputView.readOrder();
+        Line line = new Line(lineName);
+        Station station = new Station(stationName);
+        Registration findRegistration = RegistrationRepository.findRegistrationByLine(line);
+        findRegistration.registerStationToLine(order, station);
+        RegistrationRepository.updateRegistration(findRegistration);
+    }
 
     private void deleteLine() {
-        String lineName = inputView.readLineName();
+        String lineName = inputView.readDeleteLineName();
         LineRepository.deleteLineByName(lineName);
     }
 
@@ -118,7 +128,7 @@ public class SubwayMapController {
     }
 
     private void addStation() {
-        String stationName = inputView.readStationName();
+        String stationName = inputView.readDeleteStationName();
         Station station = new Station(stationName);
         StationRepository.addStation(station);
     }

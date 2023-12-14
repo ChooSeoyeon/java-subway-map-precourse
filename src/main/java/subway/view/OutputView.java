@@ -50,4 +50,12 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public void printSuccessToUpdateRegistration() {
+        System.out.println("[INFO] 구간이 등록되었습니다.");
+    }
+
+    public void printSuccessToDeleteRegistration() {
+        System.out.println("[INFO] 구간이 삭제되었습니다.");
+    }
 }
