@@ -130,4 +130,19 @@ public class InputView {
         }
         throw new IllegalArgumentException("지원하지 않는 기능입니다.\n");
     }
+
+    public int readOrder() {
+        System.out.println("## 순서를 입력하세요.");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public String readStartStationName() {
+        System.out.println("## 등록할 구간의 상행역 이름을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public String readEndStationName() {
+        System.out.println("## 등록할 구간의 하행역 이름을 입력하세요.");
+        return scanner.nextLine();
+    }
 }

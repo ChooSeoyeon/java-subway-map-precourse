@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.function.Supplier;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Registration;
+import subway.domain.RegistrationRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -91,8 +93,11 @@ public class SubwayMapController {
 //    private void addRegistration() {
 //        String lineName = inputView.readLineName();
 //        String stationName = inputView.readStationName();
-//        int distance = inputView.readDistance();
-//        LineRepository.addStation(lineName, stationName, distance);
+//        int order = inputView.readOrder();
+//        Line line = new Line(lineName);
+//        Station station = new Station(stationName);
+//        Registration registration = new Registration(line, station, order);
+//        RegistrationRepository.addRegistration(registration);
 //    }
 
     private void deleteLine() {
@@ -103,7 +108,13 @@ public class SubwayMapController {
     private void addLine() {
         String lineName = inputView.readLineName();
         Line line = new Line(lineName);
+        String startStationName = inputView.readStartStationName();
+        String endStationName = inputView.readEndStationName();
+        Station startStation = StationRepository.findStationByName(startStationName);
+        Station endStation = StationRepository.findStationByName(endStationName);
+        Registration registration = new Registration(line, List.of(startStation, endStation));
         LineRepository.addLine(line);
+        RegistrationRepository.addRegistration(registration);
     }
 
     private void addStation() {
