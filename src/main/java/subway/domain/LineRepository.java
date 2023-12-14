@@ -13,7 +13,19 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        validateDuplicateLineName(line);
         lines.add(line);
+    }
+
+    private static void validateDuplicateLineName(Line line) {
+        if (existsLineByName(line.getName())) {
+            throw new IllegalArgumentException("이미 존재하는 노선 이름입니다.");
+        }
+    }
+
+    public static boolean existsLineByName(String name) {
+        return lines.stream()
+                .anyMatch(line -> line.isSameName(name));
     }
 
     public static boolean deleteLineByName(String name) {

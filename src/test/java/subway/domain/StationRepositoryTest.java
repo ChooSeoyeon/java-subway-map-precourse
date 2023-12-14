@@ -32,10 +32,6 @@ public class StationRepositoryTest {
         assertThat(StationRepository.existsStationByName(station.getName())).isTrue();
     }
 
-    //- [x] 역 이름으로 역을 삭제한다 (역 목록에서 역을 제거)
-    //    - [x] 존재하지 않는 역인 경우 예외를 발생시킨다
-    //    - [x] 노선에 등록된 역인 경우 예외를 발생시킨다
-
     @Test
     void 역_이름으로_역을_삭제할_수_있다() {
         Station station = new Station("강남역");
