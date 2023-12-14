@@ -38,7 +38,7 @@ public class RegistrationRepositoryTest {
     }
 
     @Test
-    void 노선_이름으로_노선이_존재하는지_화인할_수_있다() {
+    void 노선_이름으로_등록이_존재하는지_화인할_수_있다() {
         Line line = new Line("2호선");
         Station station1 = new Station("강남역");
         Station station2 = new Station("잠실역");
@@ -46,5 +46,41 @@ public class RegistrationRepositoryTest {
         RegistrationRepository.addRegistration(registration);
 
         assertThat(RegistrationRepository.existsRegistrationByLine(line)).isTrue();
+    }
+
+    @Test
+    void 역_이름으로_등록이_존재하는지_확인할_수_있다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("잠실역");
+        Registration registration = new Registration(line, List.of(station1, station2));
+        RegistrationRepository.addRegistration(registration);
+
+        assertThat(RegistrationRepository.existsRegistrationByStation(station1)).isTrue();
+    }
+
+    @Test
+    void 노선으로_등록을_삭제할_수_있다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("잠실역");
+        Registration registration = new Registration(line, List.of(station1, station2));
+        RegistrationRepository.addRegistration(registration);
+        RegistrationRepository.deleteRegistrationByLine(line);
+
+        assertThat(RegistrationRepository.existsRegistrationByLine(line)).isFalse();
+    }
+
+    @Test
+    void 등록_삭제시_존재하지_않는_등록이면_예외가_발생한다() {
+        Line line = new Line("2호선");
+        Station station1 = new Station("강남역");
+        Station station2 = new Station("잠실역");
+        Registration registration = new Registration(line, List.of(station1, station2));
+        RegistrationRepository.addRegistration(registration);
+
+        assertThatThrownBy(() -> RegistrationRepository.deleteRegistrationByLine(new Line("3호선")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 등록 정보입니다.");
     }
 }

@@ -35,4 +35,16 @@ public class RegistrationRepository {
         return registrations.stream()
                 .anyMatch(registration -> registration.hasStation(station));
     }
+
+    public static void deleteRegistrationByLine(Line line) {
+        Registration registration = findRegistrationByLine(line);
+        registrations.remove(registration);
+    }
+
+    public static Registration findRegistrationByLine(Line line) {
+        return registrations.stream()
+                .filter(registration -> registration.isSameLine(line))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 등록 정보입니다."));
+    }
 }
