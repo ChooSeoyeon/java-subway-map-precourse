@@ -14,6 +14,10 @@ public class Registration {
     }
 
     private void validateStations() {
+        validateStationCount();
+    }
+
+    private void validateStationCount() {
         if (stations.size() < 2) {
             throw new IllegalArgumentException("노선에는 2개 이상의 역이 등록되어야 합니다.");
         }
@@ -46,6 +50,28 @@ public class Registration {
     private void validateDuplicateStation(Station station) {
         if (stations.contains(station)) {
             throw new IllegalArgumentException("이미 노선에 등록된 역입니다.");
+        }
+    }
+
+    public void removeStationFromLine(Station station) {
+        validateRemoveStationFromLine(station);
+        stations.remove(station);
+    }
+
+    private void validateRemoveStationFromLine(Station station) {
+        validateExistStationCount();
+        validateExistStation(station);
+    }
+
+    private void validateExistStationCount() {
+        if (stations.size() <= 2) {
+            throw new IllegalArgumentException("2개 이하의 역이 등록되어 있어 삭제할 수 없습니다.");
+        }
+    }
+
+    private void validateExistStation(Station station) {
+        if (!stations.contains(station)) {
+            throw new IllegalArgumentException("노선에 등록되지 않은 역입니다.");
         }
     }
 }
