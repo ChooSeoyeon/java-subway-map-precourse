@@ -8,7 +8,7 @@ import java.util.Objects;
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
-    public static List<Line> lines() {
+    public static List<Line> findAllLine() {
         return Collections.unmodifiableList(lines);
     }
 
@@ -18,5 +18,9 @@ public class LineRepository {
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static void deleteAllLine() {
+        lines.clear();
     }
 }
